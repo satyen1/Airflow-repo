@@ -37,4 +37,10 @@ with DAG(
         trigger_rule='all_failed'
     )
 
-    [task_A,task_B]>>task_C
+    task_D=PythonOperator(
+        task_id='task_id_D',
+        python_callable=lambda: print("Execution of task D"),
+        
+    )
+
+    [task_A,task_B]>>task_C >> task_D
